@@ -5,10 +5,7 @@ class Solution {
         
         double ans = calc(x, n/2);
         
-        if(n % 2 == 0)
-            return ans * ans;
-        else
-            return x * ans * ans;
+        return (n % 2 == 0) ? ans * ans :  x * ans * ans;
     }
     public double myPow(double x, int n) {
         if(n >= 0)
