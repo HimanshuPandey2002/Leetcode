@@ -1,54 +1,39 @@
 class Solution {
-    public static void merge(int arr[], int l, int m, int r) {
-        int n1 = m - l + 1;
-        int n2 = r - m;
-  
-        int[] L = new int[n1];
-        int[] R = new int[n2];
-  
-        for (int i = 0; i < n1; ++i)
-            L[i] = arr[l + i];
-        
-        for (int j = 0; j < n2; ++j)
-            R[j] = arr[m + 1 + j];
-  
-  
-        int i = 0, j = 0;
-  
-        int k = l;
-        while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                arr[k] = L[i];
-                i++;
-            } else {
-                arr[k] = R[j];
-                j++;
-            }
-            k++;
-        }
-  
-        while (i < n1) {
-            arr[k] = L[i];
-            i++;
-            k++;
-        }
-  
-        while (j < n2) {
-            arr[k] = R[j];
-            j++;
-            k++;
-        }
-    }
-     public static void sort(int arr[], int l, int r) {
-        if (l < r) {
-            int m =l+ (r-l)/2;
-            sort(arr, l, m);
-            sort(arr, m + 1, r);  
-            merge(arr, l, m, r);
-        }
-    }
     public int[] sortArray(int[] nums) {
-        sort(nums, 0, nums.length-1);
+        int N = nums.length;
+        mergeSort(nums, 0, N-1);
         return nums;
     }
+    
+    
+    void mergeSort(int[] nums, int start, int end){
+        if (end - start+1 <= 1) return; //Already sorted.
+        int mi = start + (end - start)/ 2;
+        mergeSort(nums, start, mi);
+        mergeSort(nums, mi+1, end);
+        merge(nums, start,mi, end);
+    }
+    
+    void merge(int[] nums, int start, int mi, int end){
+        int lp = start;
+        int rp = mi + 1;
+        int[] buffer = new int[end-start+1];
+        int t = 0;
+        
+        while (lp <= mi && rp <= end){
+            if (nums[lp] < nums[rp]){
+                buffer[t++] = nums[lp++];
+            }else{
+                buffer[t++] = nums[rp++];
+            }
+        }
+        
+        while (lp <= mi) buffer[t++] = nums[lp++];
+        while (rp <= end) buffer[t++] = nums[rp++];
+        
+        for (int i = start; i <= end; i++){
+            nums[i] = buffer[i-start];
+        }
+    }
+    
 }
