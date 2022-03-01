@@ -1,11 +1,10 @@
 class Solution {
-    public static int countBinaryOnes(int num){
+    public int countBinaryOnes(int num){
         int count = 0;
-        String bin = Integer.toBinaryString(num);
         
-        for(int i = 0; i < bin.length(); i++){
-            if(bin.charAt(i) == '1')
-                count++;
+        while(num > 0){
+            if(num%2 == 1) count++;
+            num = num/2;
         }
         return count;
     }
@@ -17,6 +16,5 @@ class Solution {
             ans[i] = countBinaryOnes(i);
         }
         return ans;
-        
     }
 }
