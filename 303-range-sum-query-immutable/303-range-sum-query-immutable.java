@@ -1,15 +1,15 @@
 class NumArray {
-    ArrayList<Integer> list = new ArrayList<Integer>();
+    int[] nums;
     public NumArray(int[] nums) {
-        for(int i: nums)
-            list.add(i);
+        for(int i = 1; i < nums.length; i++)
+            nums[i] += nums[i-1];
+        this.nums = nums;
     }
     
     public int sumRange(int left, int right) {
-        int sum = 0;
-        for(int i = left; i <= right; i++)
-            sum += list.get(i);
-        return sum;
+        if(left == 0)
+            return nums[right];
+        return nums[right] - nums[left-1];
     }
 }
 
