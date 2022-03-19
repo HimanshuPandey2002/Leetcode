@@ -22,16 +22,16 @@ class Solution {
         que.add(root);
         
         while(!que.isEmpty()){
-            int levelNum = que.size();
-            List<Integer> list = new ArrayList<Integer>();
-            for(int i = 0; i < levelNum; i++) {
-                if(que.peek().left != null) que.add(que.peek().left);
-                if(que.peek().right != null) que.add(que.peek().right);
-                list.add(que.poll().val);
+            int n = que.size();
+            double sum = 0.0;
+            
+            for(int i = 0; i < n; i++) {
+                TreeNode node = que.poll();
+                sum += node.val;
+                if(node.left != null) que.offer(node.left);
+                if(node.right != null) que.offer(node.right);
             }
-            double sum = 0;
-            for(int i: list) sum += i;
-            ans.add(sum/list.size());
+            ans.add(sum / n);
         }
         
         return ans;
