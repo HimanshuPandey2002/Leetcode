@@ -5,9 +5,8 @@ class Solution {
         
         for(int i = 0; i < n-1; i++){
             Arrays.sort(stones);
-            int val = stones[n-1] - stones[n-2];
+            stones[n-2]  = stones[n-1] - stones[n-2];
             stones[n-1] = 0;
-            stones[n-2] = val;
         }
         return stones[n-2];
     }
