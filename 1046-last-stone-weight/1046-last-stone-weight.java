@@ -9,8 +9,6 @@ class Solution {
             stones[n-1] = 0;
             stones[n-2] = val;
         }
-        for(int i: stones)
-            System.out.print(i + " ");
         return stones[n-2];
     }
 }
