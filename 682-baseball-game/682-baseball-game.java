@@ -8,11 +8,10 @@ class Solution {
                 int num2 = score.peek();
                 score.push(num1);
                 score.push(num1+num2);
-            } else if (c.equals("D")){
-                int num = score.peek();
-                score.push(num * 2);
-                
-            } else if (c.equals("C"))
+            } 
+            else if (c.equals("D"))
+                score.push(score.peek() * 2);
+            else if (c.equals("C"))
                 score.pop();
             else
                 score.push(Integer.valueOf(c));
