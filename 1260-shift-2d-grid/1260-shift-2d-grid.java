@@ -1,5 +1,7 @@
 class Solution {
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        
         while(k-- > 0){
             int prev = grid[0][0];
             
@@ -12,7 +14,7 @@ class Solution {
             }
             grid[0][0] = prev;
         }
-        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        
         for(int i = 0; i < grid.length; i++){
             List<Integer> l = new ArrayList<Integer>();
             for(int j = 0; j < grid[0].length; j++){
