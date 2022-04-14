@@ -1,32 +1,28 @@
 class Solution {
     public int[][] generateMatrix(int n) {
-        int[][] matrix = new int[n][n]; 
-        // int i = 0, j = 0;
-        int c = 1;
-        int top = 0, left = 0, right = n, bottom = n;
+        int[][] matrix = new int[n][n];
+        int top = 0, bottom = n-1, right = 0, left = n-1;
+        int count = 1;
         
-        
-        while(top < bottom && left < right){
-            int j = left;
-            while(j < right)
-                matrix[top][j++] = c++;
+        while(count <= n*n){
+            int i = right;
+            while(i <= left)
+                matrix[top][i++] = count++;
             top++;
-            j = top;
-            while(j < bottom)
-                matrix[j++][right-1] = c++;
-            right--;
-            j = right-1;
-            
-            if(!(left < right && top < bottom)) break;
-            
-            while(j >= left)
-                matrix[bottom-1][j--] = c++;
+            i = top;
+            while(i <= bottom)
+                matrix[i++][left] = count++;
+            left--;
+            i = left;
+            while(i >= right)
+                matrix[bottom][i--] = count++;
             bottom--;
-            j = bottom-1;
-            while(j >= top)
-                matrix[j--][left] = c++;
-            left++;
+            i = bottom;
+            while(i >= top)
+                matrix[i--][right] = count++;
+            right++;
         }
+        
         return matrix;
     }
 }
