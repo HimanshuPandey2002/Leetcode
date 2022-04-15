@@ -6,11 +6,9 @@ class Solution {
             return;
         }
         
-        target -= arr[ind];
         list.add(arr[ind]);
-        help(arr, ind, target, list, res);
+        help(arr, ind, target - arr[ind], list, res);
         
-        target += arr[ind];
         list.remove(list.size()-1);
         help(arr, ind+1, target, list, res);
     }
