@@ -1,6 +1,6 @@
 class Solution {
     public static void help(int[] arr, int ind, int target, List<List<Integer>> res, List<Integer> list){
-        // if(target < 0 || ind > arr.length) return;
+        if(target < 0 || ind > arr.length) return;
         // if(ind == arr.length){
         if(target == 0){
             res.add(new ArrayList<Integer>(list));
