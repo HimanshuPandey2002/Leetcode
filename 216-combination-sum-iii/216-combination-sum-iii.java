@@ -9,11 +9,10 @@ class Solution {
         for(int i = ind; i < arr.length; i++){
             if(i > ind && arr[i] == arr[i-1]) continue;
             if(arr[i] > target) break;
-            if(arr[i] > 0 && arr[i] < 10){
+
                 list.add(arr[i]);
                 help(arr, i+1, target-arr[i], res, list, k);
                 list.remove(list.size()-1);
-            }
         }
     }
     public List<List<Integer>> combinationSum3(int k, int n) {
