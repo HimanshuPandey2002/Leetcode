@@ -1,26 +1,30 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        help(nums, result, new ArrayList<Integer>(), new boolean[nums.length]);
+        help(nums, 0, result);
         return result;
     }
     
-    public void help(int[] arr, List<List<Integer>> res, ArrayList<Integer> list, boolean[] map){
-        if(list.size() == arr.length){
-            ArrayList<Integer> l = new ArrayList<Integer>(list);
-            if(!res.contains(l))
-                res.add(l);
-            return;
+    private void swap(int i, int j, int[] arr){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    public void help(int[] arr, int ind, List<List<Integer>> res){
+        if(ind == arr.length){
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for(int i = 0; i < arr.length; i++)
+                list.add(arr[i]);
+            if(!res.contains(list))
+                res.add(list);
+            return ;
         }
         
-        for(int i = 0; i < arr.length; i++){
-            if(!map[i]){
-                map[i] = true;
-                list.add(arr[i]);
-                help(arr, res, list, map);
-                list.remove(list.size()-1);
-                map[i] = false;
-            }
+        for(int i = ind; i < arr.length; i++){
+            swap(i, ind, arr);
+            help(arr, ind+1, res);
+            swap(i, ind, arr);
         }
     }
 }
