@@ -1,15 +1,9 @@
 class Solution {
-//     public List<List<Integer>> permuteUnique(int[] nums) {
-//         List<List<Integer>> result = new ArrayList<List<Integer>>();
-//         help(nums, 0, result);
-//         return result;
-//     }
-    
-//     private void swap(int i, int j, int[] arr){
-//         int temp = arr[i];
-//         arr[i] = arr[j];
-//         arr[j] = temp;
-//     }
+    private void swap(int i, int j, int[] arr){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
     
 //     public void help(int[] arr, int ind, List<List<Integer>> res){
 //         if(ind == arr.length){
@@ -29,7 +23,6 @@ class Solution {
 //     }
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
-        if (nums==null || nums.length==0) { return ans; }
         permute(ans, nums, 0);
         return ans;
     }
@@ -44,16 +37,10 @@ class Solution {
         Set<Integer> appeared = new HashSet<>();
         for (int i=index; i<nums.length; ++i) {
             if (appeared.add(nums[i])) {
-                swap(nums, index, i);
+                swap(index, i, nums);
                 permute(ans, nums, index+1);
-                swap(nums, index, i);
+                swap(index, i, nums);
             }
         }
-    }
-    
-    private void swap(int[] nums, int i, int j) {
-        int save = nums[i];
-        nums[i] = nums[j];
-        nums[j] = save;
     }
 }
