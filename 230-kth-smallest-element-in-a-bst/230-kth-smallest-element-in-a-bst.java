@@ -14,18 +14,19 @@
  * }
  */
 class Solution {
-    LinkedList<Integer> list = new LinkedList<Integer>();
-    
-    public void inOrder(TreeNode root){
-        if(root == null) return ;
-        inOrder(root.left);
-        list.add(root.val);
-        inOrder(root.right);
+    public int countNodes(TreeNode root){
+        if(root == null) return 0;
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
     
     public int kthSmallest(TreeNode root, int k) {
-        inOrder(root);
-        System.out.println(list);
-        return list.get(k-1);
+        int count = countNodes(root.left);
+        
+        if(k <= count)
+            return kthSmallest(root.left, k);
+        else if(k > count+1)
+            return kthSmallest(root.right, k-1-count);
+        
+        return root.val;
     }
 }
