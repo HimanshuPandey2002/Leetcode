@@ -1,26 +1,28 @@
 class MyHashSet {
-    ArrayList<Integer> list;
-    
+    int num[];
     public MyHashSet() {
-        list = new ArrayList<Integer>();    
+        num = new int[31251];
     }
-    
+	
     public void add(int key) {
-        if(!list.contains(key))
-            list.add(key);
+        num[getIdx(key)]|=getMask(key);
     }
-    
-    public void remove(int key) {        
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i) == key){
-                list.remove(i);
-                break;
-            }
-        }
+	
+    public void remove(int key) {
+        num[getIdx(key)] &= (~getMask(key));
     }
-    
+	
     public boolean contains(int key) {
-        return list.contains(key);
+        return (num[getIdx(key)]&getMask(key))!=0;
+    }
+	
+    private int getIdx(int key) {
+        return (key/32);
+    }
+	
+    private int getMask(int key) {
+        key%=32;
+        return (1<<key);
     }
 }
 
