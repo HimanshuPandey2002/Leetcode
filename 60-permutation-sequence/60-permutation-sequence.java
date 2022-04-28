@@ -1,31 +1,34 @@
 class Solution {    
     
-    public String getPermutation(int n, int k) {
+    private static void fact(int n, int[] dp){
+        for(int i = 1; i <= n; i++){
+            dp[i] = dp[i-1] * i;
+        }
+    }
+
+    public static String getPermutation(int n, int k) {
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        fact(n, dp);
+        for(int i: dp){
+            System.out.print(i + " ");
+        }
         String res = "";
-        
+
         ArrayList<Integer> arr = new ArrayList<Integer>(n);
-        
-        int fact = 1;
-        
-        for(int i = 1; i < n; i++){
-            fact = fact * i;
+
+        for(int i = 1; i <= n; i++)
             arr.add(i);
-        }
-        
-        System.out.println(fact);
-        
-        arr.add(n);
-        
         k = k-1;
-        while(arr.size() > 0){
-            res += String.valueOf(arr.get(k / fact));
-            arr.remove(k/fact);
-            if(arr.size() == 0) break;
-            k = k % fact;
-            fact = fact / arr.size();
-            
+        while(n > 0){
+            int grp_len = dp[n] / n;
+            int ind = k / grp_len;
+            res += String.valueOf(arr.get(ind));
+            arr.remove(ind);
+            k = k%grp_len;
+            n--;
         }
-        
+
         return res;
     }
 }
