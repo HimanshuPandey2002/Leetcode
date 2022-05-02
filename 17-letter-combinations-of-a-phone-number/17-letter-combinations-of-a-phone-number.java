@@ -8,7 +8,6 @@ class Solution {
             return ans;
         
         Solve(digits, ans, "", 0);
-        
         return ans;
     }
     
@@ -16,10 +15,12 @@ class Solution {
         if(ind == digits.length()){
             ans.add(comb);
             return;
-        }    
+        }
         
-        for(char s: arr[Integer.parseInt(String.valueOf(digits.charAt(ind)))-2].toCharArray()){
-            Solve(digits, ans, comb+s, ind+1);            
+        String str = arr[Integer.parseInt(String.valueOf(digits.charAt(ind)))-2];
+        
+        for(char c: str.toCharArray()){
+            Solve(digits, ans, comb+c, ind+1);            
         }
     }
     
