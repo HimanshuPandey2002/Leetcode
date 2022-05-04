@@ -4,9 +4,11 @@ class Solution {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         
         for(int i = 0; i < n; i++){
-            if(map.containsKey(k-nums[i]) && map.get(k-nums[i])>0){
+            int diff = k-nums[i];
+            
+            if(map.containsKey(diff) && map.get(diff)>0){
                 count++;
-                map.put(k-nums[i], map.get(k-nums[i])-1);
+                map.put(diff, map.get(diff)-1);
             }else
                 map.put(nums[i], map.getOrDefault(nums[i], 0)+1);
         }
