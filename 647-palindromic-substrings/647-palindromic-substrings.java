@@ -1,32 +1,20 @@
 class Solution {
-    ArrayList<String> str = new ArrayList<String>();
+    int count = 0;
     
-    static boolean isPalindrome(String str) {
-        int i = 0, j = str.length() - 1;
- 
-        while (i < j) 
-            if (str.charAt(i++) != str.charAt(j--))
-                return false;
- 
-        return true;
-    }
-    
-    public void ss(String s, int n){
-         for (int i = 0; i < n; i++)
-           for (int j = i+1; j <= n; j++)
-                str.add(s.substring(i, j));
+    private void extendPalindrome(String s, int left, int right) {
+        while (left >=0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            count++; left--; right++;
+        }
     }
     
     public int countSubstrings(String s) {
-        int count = 0;
-        int n = s.length();
-        ss(s, n);
+        if (s == null || s.length() == 0) return 0;
         
-        for(String ss : str){
-            if(isPalindrome(ss))
-                count++;
+        for (int i = 0; i < s.length(); i++) {
+            extendPalindrome(s, i, i); 
+            extendPalindrome(s, i, i + 1);
         }
-           
+        
         return count;
     }
 }
