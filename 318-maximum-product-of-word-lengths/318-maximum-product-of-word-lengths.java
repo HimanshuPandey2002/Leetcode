@@ -1,12 +1,12 @@
 class Solution {
     public int maxProduct(String[] words) {
-        int res = 0, max = (1 << 26) - 1;//maximum we have 26 letters
+        int res = 0, max = (1 << 26) - 1;
         int mask[] = new int[words.length];
 
         for(int i = 0; i < words.length; i++)
             for(char c : words[i].toCharArray()){
                 mask[i] |= (1 << (c - 'a'));
-                if(mask[i] == max) break;//this string contains all letters
+                if(mask[i] == max) break;
             }
 
         for(int i = 0; i < words.length - 1; i++){
