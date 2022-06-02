@@ -1,8 +1,7 @@
 class Solution {
     public int[] findOriginalArray(int[] changed) {
         int n = changed.length;
-        if(n % 2 != 0)
-            return new int[0];
+        if(n % 2 != 0) return new int[0];
         
         Arrays.sort(changed);
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
