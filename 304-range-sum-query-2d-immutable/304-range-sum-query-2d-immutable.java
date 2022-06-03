@@ -2,6 +2,7 @@ class NumMatrix {
     int[][] matrix;
     
     public NumMatrix(int[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return;
         this.matrix = matrix;    
     }
     
