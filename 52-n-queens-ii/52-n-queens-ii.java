@@ -21,16 +21,16 @@ class Solution {
         return true;
     }
     
-    public void solve(int col, char[][] board, List<List<String>> ans, int n) {
+    public void solve(int col, char[][] board, List<Integer> count, int n) {
         if(col == n){
-            ans.add(construct(board));
+            count.add(1);
             return;
         }
         
         for(int i = 0; i < n; i++){
             if(isSafe(col, i, board, n)){
                 board[i][col] = 'Q';
-                solve(col+1, board, ans, n);
+                solve(col+1, board, count, n);
                 board[i][col] = '.';
             }
         }
@@ -42,17 +42,8 @@ class Solution {
             for(int j = 0; j < n; j++)
                 board[i][j] = '.';
         
-        List<List<String>> res = new ArrayList<List<String>>();
-        solve(0, board, res, n);
-        return res.size();    
-    }
-    
-    public static List<String> construct(char[][] board){
-        List<String> res = new ArrayList<String>();
-        for(int i = 0; i < board.length; i++){
-            String s = new String(board[i]);
-            res.add(s);
-        }
-        return res;
+        List<Integer> count = new ArrayList<>();
+        solve(0, board, count, n);
+        return count.size();    
     }
 }
