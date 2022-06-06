@@ -9,9 +9,7 @@ class Solution {
                 if(list1[i].equals(list2[j])){
                     if(i+j == min_sum)
                         strs.add(list1[i]);
-                    else if(i+j > min_sum)
-                        continue;
-                    else{
+                    else if(i+j < min_sum){
                         min_sum = i+j;
                         strs.clear();
                         strs.add(list1[i]);
