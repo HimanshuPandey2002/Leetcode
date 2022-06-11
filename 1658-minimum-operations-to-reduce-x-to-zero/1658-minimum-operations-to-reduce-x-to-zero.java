@@ -1,20 +1,17 @@
 class Solution {
     public int minOperations(int[] nums, int x) {
-        int n = nums.length;
-        for(int i: nums) x -= i;
-        if(x == 0) return n;
+        int n = nums.length, best = 0;
         
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, -1);
-        int sum = 0, res = Integer.MIN_VALUE;
+        for(int i = 1; i < n; i++)
+            nums[i] += nums[i-1];
+        int target = nums[n-1] - x;
+        if(target < 0) return -1;
+        if(target == 0) return n;
         
-        for(int i = 0; i < n; i++){
-            sum += nums[i];
-            if(map.containsKey(sum + x))
-                res = Math.max(res, i - map.get(sum + x));
-            map.put(sum, i);
+        for(int i = -1, j = 0, l = 0; i < n - best && l <= x; l = nums[++i]){
+            while (nums[j] - l < target) j++;
+            if (nums[j] - l == target) best = Math.max(best, j - i);
         }
-        
-        return res == Integer.MIN_VALUE ? -1 : n - res;
+        return best > 0 ? n - best : -1;
     }
 }
