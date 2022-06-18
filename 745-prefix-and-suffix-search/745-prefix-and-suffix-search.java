@@ -2,15 +2,12 @@ class WordFilter {
     HashMap<String, Integer> map = new HashMap<>();
     
     public WordFilter(String[] words){
-        int ind = -1;
-        
-        for(String word : words){
-            int n = word.length();
-            ind++;
+        for(int w = 0; w < words.length; w++){
+            int n = words[w].length();
 
             for(int i = 0; i <= 10 && i <= n; i++)
                 for(int j = 0; j <= 10 && j <= n; j++)
-                    map.put(word.substring(0,i) + "#" + word.substring(n - j), ind);
+                    map.put(words[w].substring(0,i) + "#" + words[w].substring(n - j), w);
         }
     }
 
