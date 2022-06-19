@@ -6,9 +6,9 @@ class Solution {
         for(int i = 1; i <= searchWord.length(); i++){
             String str = searchWord.substring(0, i);
             
-            for(String s: products)
-                if(s.startsWith(str))
-                    q.offer(s);
+            for(int j = 0; j < products.length; j++)
+                if(products[j].startsWith(str))
+                    q.offer(products[j]);
             
             List<String> list = new ArrayList<>();
             
