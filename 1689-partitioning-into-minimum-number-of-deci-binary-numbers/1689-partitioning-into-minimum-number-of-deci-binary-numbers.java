@@ -3,7 +3,8 @@ class Solution {
         int max = Integer.MIN_VALUE;
         
         for(int i = 0; i < n.length(); i++)
-            max = Math.max(Integer.parseInt(String.valueOf(n.charAt(i))), max);
+            max = Math.max(n.charAt(i) - '0', max);
+        
         return max;
     }
 }
