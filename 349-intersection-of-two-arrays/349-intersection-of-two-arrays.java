@@ -13,8 +13,7 @@ class Solution {
         int[] res = new int[ans.size()];
         
         int i = 0;
-        
-        for(Integer it: ans)
+        for(int it: ans)
             res[i++] = it;
         
         return res;
