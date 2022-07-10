@@ -7,15 +7,13 @@ class Solution {
         
         int max = 0;
         
-        for(int i : nums){
+        for(int i : set){
             if(!set.contains(i-1)){
-                int num = i, count = 1;
+                int num = i+1;
                 
-                while(set.contains(num+1)){
-                    num++;
-                    count++;
-                }
-                max = Math.max(count, max);
+                while(set.contains(num)) num++;
+                
+                max = Math.max(num - i, max);
             }
         }
         return max;
