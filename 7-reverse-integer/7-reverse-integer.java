@@ -1,17 +1,14 @@
 class Solution {
     public int reverse(int x) {
-        char[] ch = String.valueOf(x).toCharArray();
-        int i = 0, j = ch.length - 1;
-
-        while( i <= j){
-            if(Character.isDigit(ch[i])){
-                char temp = ch[i];
-                ch[i] = ch[j];
-                ch[j--] = temp;
-            }
-            i++;
+        long rev = 0;
+        
+        while(x != 0){
+            rev = (rev * 10) + (x % 10);
+            x /= 10;
+            if(rev > Integer.MAX_VALUE || rev < Integer.MIN_VALUE)
+                return 0;
         }
-        long num = Long.valueOf(String.valueOf(ch));
-        return (num > 2147483647 || num < -2147483647) ? 0 : (int)num;
+        
+        return (int)rev;
     }
 }
