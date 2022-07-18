@@ -1,27 +1,22 @@
 class Solution {
-    public boolean isMatch(String S, String P) {
-        int s = 0, p = 0, match = 0, starIdx = -1;            
-        while (s < S.length()){
-            if(p < P.length()  && (P.charAt(p) == '?' || S.charAt(s) == P.charAt(p))){
-                s++;
-                p++;
-            }
-            else if (p < P.length() && P.charAt(p) == '*'){
-                starIdx = p;
-                match = s;
-                p++;
-            }
-            else if (starIdx != -1){
-                p = starIdx + 1;
+    public boolean isMatch(String s, String p) {
+        int i = 0, j = 0, ind = -1, match = 0;
+        while(i < s.length()){
+            if(j < p.length() && (p.charAt(j) == '?' || s.charAt(i) == p.charAt(j))){
+                i++;
+                j++;
+            } else if( j < p.length() && p.charAt(j) == '*'){
+                ind = j;
+                match = i;
+                j++;
+            } else if(ind != -1){
+                j = ind + 1;
                 match++;
-                s = match;
-            }
-            else return false;
+                i = match;
+            } else return false;
         }
         
-        while (p < P.length() && P.charAt(p) == '*')
-            p++;
-        
-        return p == P.length();
+        while(j < p.length() && p.charAt(j) == '*') j++;
+        return j == p.length();
     }
 }
