@@ -1,5 +1,6 @@
 class Solution {
     public int[] getAverages(int[] nums, int k) {
+        if(k == 0) return nums;
         int n = nums.length;
         long sum = 0;
         int[] rad = new int[n];
