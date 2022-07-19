@@ -19,7 +19,7 @@ class Solution {
         int n = s.length(), k = p.length();
         List<Integer> list = new ArrayList<>();
         
-        if(k > n) return list;
+        if(n == 0 || k == 0 || k > n) return list;
         
         if(isAnagrams(s, p, 0, k-1))
             list.add(0);
