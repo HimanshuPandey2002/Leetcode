@@ -3,8 +3,12 @@ class Solution {
         int max = 0;
         
         for(String sent: sentences){
-            String[] str = sent.split(" ");
-            max = Math.max(max, str.length);
+            int count = 0;
+            
+            for(char ch: sent.toCharArray())
+                if(ch == ' ') count++;
+            
+            max = Math.max(max, count+1);
         }
         return max;
     }
