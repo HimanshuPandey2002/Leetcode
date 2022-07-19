@@ -1,33 +1,48 @@
 class Solution {
-    public boolean isAnagrams(String s1, String s2, int s, int e){
-        int[] count = new int[26];
-        int ind = 0;
-
-        for(int i = s; i <= e; i++) {
-            count[s1.charAt(i) - 'a']++;
-            count[s2.charAt(ind++) - 'a']--;
-        }
-
-        for(int i = 0; i < 26; i++)
-            if (count[i] != 0)
-                return false;
-        
-        return true;
-    }
-    
     public List<Integer> findAnagrams(String s, String p) {
-        int n = s.length(), k = p.length();
+        int start = 0, end = 0, n = s.length(), k = p.length(), diff = k;
         List<Integer> list = new ArrayList<>();
         
         if(n == 0 || k == 0 || k > n) return list;
         
-        if(isAnagrams(s, p, 0, k-1))
-            list.add(0);
+        int[] chars = new int[26];
         
-        for(int i = k; i < n; i++){
-            if(isAnagrams(s, p, i-k+1, i))
-                list.add(i-k+1);
+        for (char c : p.toCharArray())
+           chars[c-'a']++;
+        
+        char temp;
+        
+        for (end = 0; end < k; end++){
+           temp = s.charAt(end);
+           chars[temp-'a']--;
+            
+           if (chars[temp-'a'] >= 0)
+               diff--;
         }
+        
+        if (diff == 0)
+            list.add(0);
+       
+        while (end < s.length()){           
+           temp = s.charAt(start);
+           
+           if (chars[temp-'a'] >= 0)
+               diff++;
+           
+           chars[temp-'a']++;
+           start++;
+           temp = s.charAt(end);
+           chars[temp-'a']--;
+           
+           if (chars[temp-'a'] >= 0)
+               diff--;           
+           
+           if (diff == 0)
+               list.add(start);
+           
+           end++;   
+       }
+        
         
         return list;
         
