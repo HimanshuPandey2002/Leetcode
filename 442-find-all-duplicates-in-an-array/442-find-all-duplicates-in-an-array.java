@@ -4,7 +4,7 @@ class Solution {
         Map<Integer, Integer> map = new HashMap<>();
         
         for(int i: nums)
-            map.merge(i, 1, Integer::sum);
+            map.put(i, map.getOrDefault(i, 0) + 1);
         
         for(Map.Entry<Integer, Integer> entry: map.entrySet()){
             if(entry.getValue() > 1)
