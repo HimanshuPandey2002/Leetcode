@@ -7,10 +7,8 @@ class Solution {
             if (i + n.length() > h.length()) break;
             
             for (int j = 0; j < n.length(); j++) {
-                if (h.charAt(i+j) != n.charAt(j))
-                    break;
-                if (j == n.length()-1)
-                    return i;
+                if (h.charAt(i+j) != n.charAt(j)) break;
+                if (j == n.length()-1) return i;
             }
         }
         
