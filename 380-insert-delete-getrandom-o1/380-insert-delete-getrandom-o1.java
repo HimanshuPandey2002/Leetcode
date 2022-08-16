@@ -14,14 +14,11 @@ class RandomizedSet {
     }  
     
     public int getRandom() {
-        int size = set.size();
-        int item = new Random().nextInt(size); 
+        int item = new Random().nextInt(set.size()); 
         int i = 0;
-        for(Integer obj : set){
-            if (i == item)
-                return obj;
-            i++;
-        }
+        for(int n : set)
+            if (i++ == item) return n;
+
         return 1;
     }
 }
