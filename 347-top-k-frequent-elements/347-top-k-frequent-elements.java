@@ -11,14 +11,11 @@ class Solution {
         
         for(Map.Entry<Integer, Integer> e: map.entrySet()){
             pq.add(e);
-            if(pq.size() > k)
-                pq.remove();
+            if(pq.size() > k) pq.remove();
         }
         
         int[] res = new int[k];
-        int i = 0;
-        while(!pq.isEmpty())
-            res[i++] = pq.remove().getKey();
+        for(int i = 0; i < k; i++) res[i] = pq.remove().getKey();
         return res;
     }
 }
