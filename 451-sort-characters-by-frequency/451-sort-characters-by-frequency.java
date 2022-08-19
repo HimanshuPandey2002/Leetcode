@@ -1,28 +1,28 @@
 class Solution {
     public String frequencySort(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        Map<Character, int[]> map = new HashMap<>();
         
-        for(char c: s.toCharArray())
-            map.put(c, map.getOrDefault(c, 0) + 1);
-        
-        PriorityQueue<Map.Entry<Character, Integer>> pq = new PriorityQueue<>((o1, o2) -> {
-            if(o1.getValue() == o2.getValue())
-                return o2.getKey().compareTo(o1.getKey());
-            return o2.getValue().compareTo(o1.getValue());
-        });
-        
-        for(Map.Entry<Character, Integer> e: map.entrySet())
-            pq.add(e);
-        
-        String res = "";
-        
-        while(!pq.isEmpty()){
-            int freq = pq.peek().getValue();
-            char key = pq.peek().getKey();
-            pq.remove();
-            for(int i = 0; i < freq; i++)
-                res += key;
+        for (int i = 0; i <s.length(); i++) {
+            char c = s.charAt(i);
+            if (!map.containsKey(c)) map.put(c, new int[]{1, i});
+            else {
+                int[] freqAndSeq = map.get(c);
+                freqAndSeq[0]++;
+                map.put(c, freqAndSeq);
+            }
         }
-        return res;
+
+        PriorityQueue<Map.Entry<Character, int[]>> pq = new PriorityQueue<>((a, b) ->
+                a.getValue()[0] == b.getValue()[0] ? a.getValue()[1] - b.getValue()[1] : b.getValue()[0] - a.getValue()[0]);
+
+        pq.addAll(map.entrySet());
+        
+        StringBuilder sb = new StringBuilder();
+        while (!pq.isEmpty()) {
+            Map.Entry<Character, int[]> e = pq.poll();
+            for (int i = 0; i < e.getValue()[0]; i++)
+                sb.append(e.getKey());
+        }
+        return sb.toString();
     }
 }
