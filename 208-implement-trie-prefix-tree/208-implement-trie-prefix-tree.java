@@ -6,7 +6,7 @@ class Node {
         return links[c - 'a'] != null;
     }
     
-    void put(char c, Node node){
+    void add(char c, Node node){
         links[c - 'a'] = node;
     }
     
@@ -23,10 +23,9 @@ class Node {
     }
 }
 
-
 class Trie {
     private static Node root;
-    
+
     public Trie() {
         root = new Node();
     }
@@ -36,7 +35,7 @@ class Trie {
         
         for(char c: word.toCharArray()){
             if(!node.contains(c))
-                node.put(c, new Node());
+                node.add(c, new Node());
             node = node.get(c);
         }
         
