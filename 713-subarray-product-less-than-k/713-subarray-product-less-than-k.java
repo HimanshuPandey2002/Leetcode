@@ -4,10 +4,8 @@ class Solution {
         
         for(int i = 0, j = 0; j < n; j++){
             p *= nums[j];
-            
-            while(i <= j && p >= k){
+            while(i <= j && p >= k)
                 p /= nums[i++];
-            }
             
             count += (j - i + 1);
         }
