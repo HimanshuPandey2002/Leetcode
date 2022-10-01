@@ -17,7 +17,7 @@ class Solution {
         int two = 0;
         
         if(ind < s.length()-1 && Integer.parseInt(s.substring(ind, ind+2)) <= 26)
-            two = solve(ind+2, s);
+            two = solve(ind + 2, s);
         
         return dp[ind] = one + two;
     }
