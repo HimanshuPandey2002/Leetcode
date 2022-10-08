@@ -5,7 +5,8 @@ class Solution {
     public int numberOfWays(String corridor) {
         dp = new int[corridor.length() + 1][3];
         
-        for(int[] arr: dp) Arrays.fill(arr, -1);
+        for(int[] arr: dp)
+            Arrays.fill(arr, -1);
         
         return solve(corridor, 0, 0);
     }
@@ -15,10 +16,13 @@ class Solution {
         
         if(dp[ind][cnt] != -1) return dp[ind][cnt];
         
-        return dp[ind][cnt] = cnt == 2 
-            ? s.charAt(ind) == 'P'
-                ? (solve(s, ind + 1, 0) % MOD + solve(s, ind + 1, cnt) % MOD) % MOD
-                : solve(s, ind + 1, 1) % MOD 
-            : solve(s, ind + 1, cnt + (s.charAt(ind) == 'S' ? 1 : 0)) % MOD;
+        if(cnt == 2) {  
+            if(s.charAt(ind) == 'P')
+                return dp[ind][cnt] = (solve(s, ind + 1, 0) % MOD + solve(s, ind + 1, cnt) % MOD) % MOD;
+            else
+                return dp[ind][cnt] = solve(s, ind + 1, 1) % MOD;
+        }
+        
+        return dp[ind][cnt] = solve(s, ind + 1, cnt + (s.charAt(ind) == 'S' ? 1 : 0)) % MOD;
     }
 }
